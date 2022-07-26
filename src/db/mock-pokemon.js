@@ -32,7 +32,7 @@ const pokemons = [
      hp: 16,
      cp: 2,
      picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/013.png",
-     types: ["Insecte", "Poison"],
+     types: ["Insecte"],
      created: new Date()
     },
     {

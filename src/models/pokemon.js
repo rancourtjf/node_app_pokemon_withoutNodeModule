@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique:{msg:'le nom est déjà pris'},
         validate:{
          /* isEmpty:{msg:"Vous n'avez pas inscrit de nom"},*/
           notNull:{msg:'Le nom est une propriété requise'}
@@ -18,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate:{
           isInt:{msg:'Utilisez uniquement des nombres entiers pour les points de vie'},
-          notNull:{msg:'Les points de vie sont une propriété requise'}
+          notNull:{msg:'Les points de vie sont une propriété requise'},
+          max:1000|{arg:[1000],msg:"doit etre de moins de 1000"}
         }
       },
       cp: {
@@ -40,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       types: {
         type: DataTypes.STRING,
         allowNull: false,
-        /*get() {
+       /* get() {
           console.log( this.getDataValue('types').split(','))
           return this.getDataValue('types').split(',')
    
