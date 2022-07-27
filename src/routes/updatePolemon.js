@@ -18,6 +18,7 @@ module.exports = (app) => {
 
     })
     .catch(error =>{
+      if (error instanceof UniqueConstraintError) { return res.status(400).json({ messsage: error.message, data: error }) }
         if(error instanceof ValidationError){
             return res.status(400).json({messsage:error.message,data:error})
         }

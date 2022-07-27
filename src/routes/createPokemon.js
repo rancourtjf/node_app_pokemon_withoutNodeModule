@@ -1,4 +1,4 @@
-const { ValidationError } = require('sequelize')
+const { ValidationError, UniqueConstraintError } = require('sequelize')
 const { Pokemon } = require('../db/sequelize')
   
 module.exports = (app) => {
@@ -9,6 +9,8 @@ module.exports = (app) => {
         res.json({ message, data: pokemon })
       })
       .catch(error =>{
+        if(error instanceof UniqueConstraintError)
+        { return res.status(400).json({ messsage: error.message, data: error }) }
           if(error instanceof ValidationError){
               return res.status(400).json({messsage:error.message,data:error})
           }
